@@ -3,16 +3,9 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
-from owlapy.class_expression import OWLDataHasValue
-from owlapy.iri import IRI
-from owlapy.owl_literal import OWLLiteral
-from owlapy.owl_ontology_manager import OntologyManager
-from owlapy.owl_property import OWLDataProperty
-from owlapy.owl_reasoner import OntologyReasoner, FastInstanceCheckerReasoner
 from transformers import AutoModel
 from numpy.linalg import norm
 import json
-import os
 
 
 def sort(d):

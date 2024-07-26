@@ -1,7 +1,6 @@
-from owlapy.class_expression import OWLClass, OWLObjectSomeValuesFrom, OWLObjectHasValue
 from owlapy.iri import IRI
 from owlapy.owl_ontology_manager import OntologyManager
-from owlapy.owl_property import OWLObjectProperty, OWLDataProperty
+from owlapy.owl_property import OWLDataProperty
 from owlapy.owl_reasoner import OntologyReasoner, FastInstanceCheckerReasoner
 import torch
 from transformers import AutoModel

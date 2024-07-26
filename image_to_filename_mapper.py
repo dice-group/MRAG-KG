@@ -4,9 +4,6 @@ from owlapy.owl_literal import OWLLiteral
 from owlapy.owl_ontology_manager import OntologyManager
 from owlapy.owl_property import OWLDataProperty
 from owlapy.owl_reasoner import OntologyReasoner, FastInstanceCheckerReasoner
-import torch
-from transformers import AutoModel
-from numpy.linalg import norm
 import json
 import os
 
