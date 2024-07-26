@@ -166,4 +166,4 @@ so basically its trivial information.
 2. [second_generation.py](https://github.com/alkidbaci/MRAG-KG/blob/main/second_generation.py) (generated file can be found on the ftp server: [download](https://files.dice-research.org/datasets/ontolearn/fashionpedia-second-generation.owl))
 3. [image_to_filename_mapper.py](https://github.com/alkidbaci/MRAG-KG/blob/main/image_to_filename_mapper.py) (generated file already on git repo: [direct link](https://github.com/alkidbaci/MRAG-KG/blob/main/image-filename-mappings))
 4. [embeddings-generation.py](https://github.com/alkidbaci/MRAG-KG/blob/main/embeddings-generation.py) (generated file can be found on the ftp server: [download](https://files.dice-research.org/datasets/ontolearn/fashionpedia-embeddings))
-5. [recommendation_script.py ](https://github.com/alkidbaci/MRAG-KG/blob/main/recommendation_script.py)
+5. [recommendation_script.py ](https://github.com/alkidbaci/MRAG-KG/blob/main/recommendation_script.py) (requires images folder: [download](https://files.dice-research.org/datasets/ontolearn/images.zip))
