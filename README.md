@@ -6,6 +6,8 @@ Here I explain how the datasets are generated.
 Scripts used for the 
 generation can be found [here](https://github.com/alkidbaci/MRAG-KG).
 
+Big files located on the [ftp server.](https://files.dice-research.org/datasets/ontolearn/)
+
 ## About Fashionpedia
 
 Fashionpedia provides the following data that we make use of:
