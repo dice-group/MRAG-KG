@@ -8,18 +8,18 @@ import json
 import os
 
 manager = OntologyManager()
-ontology = manager.load_ontology(IRI.create("file://fashionpedia-second-generation.owl"))
+ontology = manager.load_ontology(IRI.create("file://../fashionpedia-second-generation.owl"))
 base_reasoner = OntologyReasoner(ontology)
 reasoner = FastInstanceCheckerReasoner(base_reasoner=base_reasoner, ontology=ontology)
 has_description = OWLDataProperty(IRI.create("http://example.org/hasDescription"))
 
 mappings = {}
-for filename in os.listdir('images'):
+for filename in os.listdir('../images'):
     iri = IRI.create("http://example.org/hasFileName")
     dp = OWLDataProperty(iri)
     dhvf = OWLDataHasValue(dp, OWLLiteral(filename))
     image = list(reasoner.instances(dhvf))[0]
     mappings[image.iri.get_short_form()] = filename
 
-with open("image-filename-mappings", 'w') as f:
+with open("../image-filename-mappings.json", 'w') as f:
     json.dump(mappings, f)

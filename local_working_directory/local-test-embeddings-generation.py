@@ -21,7 +21,7 @@ model = AutoModel.from_pretrained('jinaai/jina-embeddings-v2-base-de', trust_rem
                                   torch_dtype=torch.bfloat16)
 
 embeddings_final = {}
-for filename in os.listdir('images'):
+for filename in os.listdir('../images'):
     iri = IRI.create("http://example.org/hasFileName")
     dp = OWLDataProperty(iri)
     dhvf = OWLDataHasValue(dp, OWLLiteral(filename))
@@ -34,5 +34,5 @@ for filename in os.listdir('images'):
         desc_counter += 1
     print("Done with " + filename)
 
-with open("fashionpedia-embeddings", 'w') as f:
+with open("local-fashionpedia-embeddings", 'w') as f:
     json.dump(embeddings_final, f)

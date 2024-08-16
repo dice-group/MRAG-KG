@@ -8,7 +8,7 @@ from rdflib.namespace import XSD
 
 
 manager = OntologyManager()
-ontology = manager.load_ontology(IRI.create("file://fashionpedia-first-generation.owl"))
+ontology = manager.load_ontology(IRI.create("file://../fashionpedia-first-generation.owl"))
 base_reasoner = OntologyReasoner(ontology)
 reasoner = FastInstanceCheckerReasoner(base_reasoner=base_reasoner, ontology=ontology)
 
@@ -78,4 +78,4 @@ for image in images:
         else:
             g.add((ind, has_description, Literal(description, datatype=XSD.string)))
 
-g.serialize(destination="fashionpedia-second-generation.owl", format="xml")
+g.serialize(destination="../fashionpedia-second-generation.owl", format="xml")

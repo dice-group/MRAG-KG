@@ -8,7 +8,7 @@ from numpy.linalg import norm
 import json
 
 manager = OntologyManager()
-ontology = manager.load_ontology(IRI.create("file://fashionpedia-second-generation.owl"))
+ontology = manager.load_ontology(IRI.create("file://../fashionpedia-second-generation.owl"))
 base_reasoner = OntologyReasoner(ontology)
 reasoner = FastInstanceCheckerReasoner(base_reasoner=base_reasoner, ontology=ontology)
 has_description = OWLDataProperty(IRI.create("http://example.org/hasDescription"))
@@ -26,5 +26,5 @@ for image in ontology.individuals_in_signature():
         embeddings_final[image.str.split("/")[-1] + f"_{desc_counter}"] = embeddings.tolist()
         desc_counter += 1
 
-with open("fashionpedia-embeddings", 'w') as f:
+with open("../fashionpedia-embeddingsss", 'w') as f:
     json.dump(embeddings_final, f)

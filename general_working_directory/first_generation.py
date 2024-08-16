@@ -4,7 +4,7 @@ from rdflib import Graph, URIRef, Literal, BNode, RDFS, OWL, Namespace, RDF
 from rdflib.collection import Collection
 from rdflib.namespace import XSD
 
-with open('instances_attributes_train2020.json') as json_file:
+with open('../instances_attributes_train2020.json') as json_file:
     data = json.load(json_file)
 
 g = Graph()
@@ -200,4 +200,4 @@ for annotation in data["annotations"]:
         g.add((ind, is_crowd, annotation["iscrowd"]))
 
 
-g.serialize(destination="fashionpedia-first-generation.owl", format="xml")
+g.serialize(destination="../fashionpedia-first-generation.owl", format="xml")
