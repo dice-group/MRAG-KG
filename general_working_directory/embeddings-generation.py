@@ -1,30 +1,30 @@
+import csv
+from openai import OpenAI
 from owlapy.iri import IRI
 from owlapy.owl_ontology_manager import OntologyManager
 from owlapy.owl_property import OWLDataProperty
 from owlapy.owl_reasoner import OntologyReasoner, FastInstanceCheckerReasoner
-import torch
-from transformers import AutoModel
-from numpy.linalg import norm
-import json
 
 manager = OntologyManager()
-ontology = manager.load_ontology(IRI.create("file://../fashionpedia-second-generation.owl"))
+ontology = manager.load_ontology(IRI.create("file://fashionpedia-third-generation.owl"))
 base_reasoner = OntologyReasoner(ontology)
 reasoner = FastInstanceCheckerReasoner(base_reasoner=base_reasoner, ontology=ontology)
-has_description = OWLDataProperty(IRI.create("http://example.org/hasDescription"))
+dprop2 = OWLDataProperty(IRI.create("http://example.org/hasDescription"))
+dprop3 = OWLDataProperty(IRI.create("http://example.org/hasLLMDescription"))
 
-cos_sim = lambda a, b: (a @ b.T) / (norm(a) * norm(b))
-model = AutoModel.from_pretrained('jinaai/jina-embeddings-v2-base-de', trust_remote_code=True,
-                                  torch_dtype=torch.bfloat16)
-
-embeddings_final = {}
-for image in ontology.individuals_in_signature():
-    descriptions = list(reasoner.data_property_values(image, has_description))
-    desc_counter = 1
-    for description in descriptions:
-        embeddings = model.encode(description.get_literal())
-        embeddings_final[image.str.split("/")[-1] + f"_{desc_counter}"] = embeddings.tolist()
-        desc_counter += 1
-
-with open("../fashionpedia-embeddingsss", 'w') as f:
-    json.dump(embeddings_final, f)
+with open('output.csv', mode='a', newline='') as file:
+    writer = csv.writer(file)
+    client = OpenAI(base_url="http://tentris-ml.cs.upb.de:8502/v1", api_key="token-tentris-upb")
+    count = 0
+    for image_ind in ontology.individuals_in_signature():
+        llm_description = str(list(reasoner.data_property_values(image_ind, dprop3))[0].get_literal())
+        if len(llm_description) > 4000:
+            llm_description = llm_description[:4000]
+        all_descriptions = ""
+        for d in list(reasoner.data_property_values(image_ind, dprop2)):
+            all_descriptions = all_descriptions + d.get_literal() + "\n"
+        image_iri = image_ind.str
+        responses = client.embeddings.create(input=[all_descriptions + "\n " + llm_description], model="tentris")
+        writer.writerow([image_iri, responses.data[0].embedding])
+        count += 1
+        print(f"{image_iri}: {count:,}/45,623")
