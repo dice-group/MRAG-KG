@@ -12,8 +12,9 @@ reasoner = FastInstanceCheckerReasoner(base_reasoner=base_reasoner, ontology=ont
 dprop2 = OWLDataProperty(IRI.create("http://example.org/hasDescription"))
 dprop3 = OWLDataProperty(IRI.create("http://example.org/hasLLMDescription"))
 
-with open('output.csv', mode='a', newline='') as file:
+with open('embeddings.csv', mode='a', newline='') as file:
     writer = csv.writer(file)
+    writer.writerow(["IRI"] + [f"{i}" for i in range(4095)])
     client = OpenAI(base_url="http://tentris-ml.cs.upb.de:8502/v1", api_key="token-tentris-upb")
     count = 0
     for image_ind in ontology.individuals_in_signature():
@@ -25,6 +26,6 @@ with open('output.csv', mode='a', newline='') as file:
             all_descriptions = all_descriptions + d.get_literal() + "\n"
         image_iri = image_ind.str
         responses = client.embeddings.create(input=[all_descriptions + "\n " + llm_description], model="tentris")
-        writer.writerow([image_iri, responses.data[0].embedding])
+        writer.writerow([image_iri] + responses.data[0].embedding)
         count += 1
         print(f"{image_iri}: {count:,}/45,623")
