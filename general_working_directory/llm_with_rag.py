@@ -16,8 +16,19 @@ dprop2 = OWLDataProperty(IRI.create("http://example.org/hasLLMDescription"))
 
 llm_client = OpenAI(base_url="http://tentris-ml.cs.upb.de:8501/v1", api_key="token-tentris-upb")
 
-
 def get_result(query, docs):
+    return llm_client.chat.completions.create(
+    model="tentris",
+    messages=[
+        {"role": "system", "content": "You are a apparel-loving AI and your focus is to give information about apparels. You should find similar points on the assisting information provided to you and present them in a short paragraph tailored to the user's query."},
+        {"role": "user", "content": [{ "type": "text", "text": f"{query}"}]},
+        {"role": "assistant", "content": f"{docs}"},
+    ],
+    temperature=0.1,
+    seed=1
+).choices[0].message.content
+
+def get_result2(query, docs):
     return llm_client.chat.completions.create(
         model="tentris",
         messages=[
