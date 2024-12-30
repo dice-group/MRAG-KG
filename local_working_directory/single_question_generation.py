@@ -50,11 +50,11 @@ print(client.chat.completions.create(
             [
                 {
                     "type": "text",
-                    "text": "Consider you are a user that is looking for clothes/apparels in an online recommandation system."
-                            "Formulate a query of a prompt-like structure that the you would ask in such a way that the attached image would be recommended to you. To generate the query you can take in consideration the following auxiliary information about the image:"
-                            f"{all_descriptions}"
-                            f"{llm_description}" 
-                            "Only write the query which should be a question and always end with a questionmark."
+                    "text": "Consider you are a user that is looking for clothes/apparel in an online recommandation system."
+                            "Formulate a query of a prompt-like structure that you would ask in such a way that the attached image would be recommended to you. To generate the query, you can take into consideration the following auxiliary information about the image:"
+                            f"{desc}"
+                            f"{llm_desc}"
+                            "Only write the query, which should be a question, and always end with a question mark."
                 },
                 {
                     "type": "image_url",

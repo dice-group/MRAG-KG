@@ -22,8 +22,14 @@ dprop2 = OWLDataProperty(IRI.create("http://example.org/hasDescription"))
 dprop3 = OWLDataProperty(IRI.create("http://example.org/hasLLMDescription"))
 
 client = OpenAI(base_url="http://tentris-ml.cs.upb.de:8501/v1", api_key="token-tentris-upb")
-
-
+#
+# Consider you are a user that is looking for clothes/apparel in an
+#     online recommendation system. Formulate a query of a prompt-like
+#     structure that you would ask in such a way that the attached image
+#     would be recommended to you. To generate the query, you can take into
+#     consideration the following auxiliary information about the image:
+#     <description>. Only write the query, which should be a question,
+#     and always end with a question mark.
 def get_message(base64, desc, llm_desc):
     return client.chat.completions.create(
         model="tentris",
@@ -34,11 +40,11 @@ def get_message(base64, desc, llm_desc):
                     [
                         {
                             "type": "text",
-                            "text": "Consider you are a user that is looking for clothes/apparels in an online recommandation system."
-                                    "Formulate a query of a prompt-like structure that the you would ask in such a way that the attached image would be recommended to you. To generate the query you can take in consideration the following auxiliary information about the image:"
+                            "text": "Consider you are a user that is looking for clothes/apparel in an online recommandation system."
+                                    "Formulate a query of a prompt-like structure that you would ask in such a way that the attached image would be recommended to you. To generate the query, you can take into consideration the following auxiliary information about the image:"
                                     f"{desc}"
                                     f"{llm_desc}"
-                                    "Only write the query which should be a question and always end with a questionmark."
+                                    "Only write the query, which should be a question, and always end with a question mark."
                         },
                         {
                             "type": "image_url",
