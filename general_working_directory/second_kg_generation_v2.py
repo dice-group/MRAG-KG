@@ -48,7 +48,7 @@ g.add((hasAttribute, RDFS.range, class_attribute))
 
 hasAttributeCategory = URIRef("http://example.org/hasAttributeCategory")
 g.add((hasAttributeCategory, RDF.type, OWL.ObjectProperty))
-g.add((hasAttributeCategory, RDFS.domain, class_attribute))
+g.add((hasAttributeCategory, RDFS.domain, class_image))
 g.add((hasAttributeCategory, RDFS.range, class_attribute_category))
 
 oprop = OWLObjectProperty(IRI.create("http://example.org/hasImage"))

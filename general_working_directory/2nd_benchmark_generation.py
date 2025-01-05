@@ -51,7 +51,7 @@ K = int(math.sqrt(N))  # k ≈ 213
 assert X.shape == (N, D)
 assert K == 213
 
-with open('benchmark_embeddings.csv', mode='a', newline='') as file:
+with open('question_embeddings.csv', mode='a', newline='') as file:
     print("Saving embeddings...")
     writer = csv.writer(file)
     writer.writerow(["IRI"] + [f"{i}" for i in range(D)])
@@ -65,7 +65,7 @@ knn.fit(X)
 
 labels = knn.kneighbors(X, return_distance=False)
 
-with open('benchmark_knn.csv', mode='a', newline='') as file:
+with open('second_benchmark.csv', mode='a', newline='') as file:
     print("Saving KNN...")
     writer = csv.writer(file)
     writer.writerow(["IRI"] + [f"{i}" for i in range(K)])

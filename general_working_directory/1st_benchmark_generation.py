@@ -43,7 +43,7 @@ def start_generation():
         if count > 10:
             break
 
-    with open("fragmented_questions.json", "w") as outfile:
+    with open("first_benchmark.json", "w") as outfile:
         json.dump(image_full_question_fragments_dict, outfile)
 
 
