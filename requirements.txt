@@ -1,0 +1,7 @@
+ontolearn == 0.8.1
+owlapy == 1.3.3
+rdflib
+numpy
+pandas
+openai
+scikit-learn
