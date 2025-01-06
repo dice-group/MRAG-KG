@@ -2,6 +2,50 @@
 
 In this repository you will find all the scripts used during the writing of the thesis.
 
+#### Big files you can download from ftp server
+
+You can download files used in this thesis in the [ftp server](https://files.dice-research.org/datasets/MRAG-KG/) where
+you will find the following files (link to download is embedded):
+- [First generated KG](https://files.dice-research.org/datasets/MRAG-KG/fashionpedia-first-generation.owl)
+- [Second generated KG](https://files.dice-research.org/datasets/MRAG-KG/fashionpedia-second-generation.owl)
+- [Second generated KG v2](https://files.dice-research.org/datasets/MRAG-KG/fashionpedia-second-generation-v2.owl)
+- [Third generated KG](https://files.dice-research.org/datasets/MRAG-KG/fashionpedia-third-generation.owl)
+- [First benchmark dataset](https://files.dice-research.org/datasets/MRAG-KG/first_benchmark.json)
+- [Second benchmark dataset](https://files.dice-research.org/datasets/MRAG-KG/second_benchmark.csv)
+- [Long-format questions used for to generate the first benchmark](https://files.dice-research.org/datasets/MRAG-KG/questions.json)
+- [Embeddings of documents from second KG](https://files.dice-research.org/datasets/MRAG-KG/embeddings_second_kg.csv)
+- [Embeddings of documents from third KG](https://files.dice-research.org/datasets/MRAG-KG/embeddings_third_kg.csv)
+
+
+#### Evaluation-related files inside the repository
+Evaluation-related files are stored in this repository under the root directory.
+In the filenames:
+- "KG2" denotes the second knowledge graph
+- "KG3" denotes the third knowledge graph
+- "b1" denotes the first benchmark
+- "b2" denotes the second benchmark
+
+The following files store the rank of each sample instance decided by different settings of retrieval methods:
+- `evaluation_results_2nd_retrieval_method_KG2_5_5.json`
+- `evaluation_results_2nd_retrieval_method_KG2_10_10.json`
+- `evaluation_results_2nd_retrieval_method_KG2_20_20.json`
+- `evaluation_results_2nd_retrieval_method_KG3_5_5.json`
+- `evaluation_results_2nd_retrieval_method_KG3_10_10.json`
+- `evaluation_results_2nd_retrieval_method_KG3_20_20.json`
+- `evaluation_results_bm25_KG2_b1.json`
+- `evaluation_results_bm25_KG2_b2.json`
+- `evaluation_results_bm25_KG3_b1.json`
+- `evaluation_results_bm25_KG3_b2.json`
+- `evaluation_results_embedding-based_KG2_b1.json`
+- `evaluation_results_embedding-based_KG2_b2.json`
+- `evaluation_results_embedding-based_KG3_b1.json`
+- `evaluation_results_embedding-based_KG3_b2.json`
+
+To print the mrr and hits@k for k in {10,20,50,100} run the script `genral_working_directory/mrr_and_hits@k.py`. 
+Make sure that the script and the json files mentioned above are at the same directory.
+
+---------------------------------------------
+#### Reproducing results
 To reproduce the results and necessary data structures only the `general_working_directory` should be considered. The other directories
 can be ignored.
 
@@ -11,7 +55,7 @@ Install python v3.10.13 or later.
 
 Clone the repository, create a virtual environment and install dependencies:
 
-```commandline
+```
 # 1. clone 
 git clone https://github.com/dice-group/MRAG-KG.git
 # 2. setup virtual environment
