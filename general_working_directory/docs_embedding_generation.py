@@ -3,14 +3,13 @@ from openai import OpenAI
 from owlapy.iri import IRI
 from owlapy.owl_ontology_manager import OntologyManager
 from owlapy.owl_property import OWLDataProperty
-from owlapy.owl_reasoner import OntologyReasoner, FastInstanceCheckerReasoner
+from owlapy.owl_reasoner import StructuralReasoner
 import argparse
 def run(args):
     manager = OntologyManager()
     filepath = "file://" + args.kg_path
     ontology = manager.load_ontology(IRI.create(filepath))
-    base_reasoner = OntologyReasoner(ontology)
-    reasoner = FastInstanceCheckerReasoner(base_reasoner=base_reasoner, ontology=ontology)
+    reasoner = StructuralReasoner( ontology=ontology)
     dprop2 = OWLDataProperty(IRI.create("http://example.org/hasDescription"))
     dprop3 = OWLDataProperty(IRI.create("http://example.org/hasLLMDescription"))
 

@@ -2,15 +2,14 @@ from owlapy.class_expression import OWLClass, OWLObjectSomeValuesFrom, OWLObject
 from owlapy.iri import IRI
 from owlapy.owl_ontology_manager import OntologyManager
 from owlapy.owl_property import OWLObjectProperty, OWLDataProperty
-from owlapy.owl_reasoner import OntologyReasoner, FastInstanceCheckerReasoner
+from owlapy.owl_reasoner import StructuralReasoner
 from rdflib import Graph, URIRef, Literal, BNode, RDFS, OWL, Namespace, RDF
 from rdflib.namespace import XSD
 
 
 manager = OntologyManager()
 ontology = manager.load_ontology(IRI.create("file://../fashionpedia-first-generation.owl"))
-base_reasoner = OntologyReasoner(ontology)
-reasoner = FastInstanceCheckerReasoner(base_reasoner=base_reasoner, ontology=ontology)
+reasoner = StructuralReasoner( ontology=ontology)
 
 images = reasoner.instances(OWLClass(IRI.create("http://example.org/Image")))
 g = Graph()

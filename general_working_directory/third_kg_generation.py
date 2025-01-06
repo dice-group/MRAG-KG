@@ -4,7 +4,7 @@ from openai import OpenAI
 from owlapy.iri import IRI
 from owlapy.owl_ontology_manager import OntologyManager
 from owlapy.owl_property import OWLDataProperty
-from owlapy.owl_reasoner import OntologyReasoner, FastInstanceCheckerReasoner
+from owlapy.owl_reasoner import StructuralReasoner
 from rdflib import Graph, URIRef, Literal, RDFS, OWL, RDF
 from rdflib.namespace import XSD
 
@@ -15,8 +15,7 @@ client = OpenAI(api_key=api_key, base_url=api_base)
 
 manager = OntologyManager()
 ontology = manager.load_ontology(IRI.create("file://fashionpedia-second-generation.owl"))
-base_reasoner = OntologyReasoner(ontology)
-reasoner = FastInstanceCheckerReasoner(base_reasoner=base_reasoner, ontology=ontology)
+reasoner = StructuralReasoner(ontology=ontology)
 g = Graph()
 g.parse("fashionpedia-second-generation.owl")
 

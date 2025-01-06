@@ -5,7 +5,7 @@ from openai import OpenAI
 from owlapy.iri import IRI
 from owlapy.owl_ontology_manager import OntologyManager
 from owlapy.owl_property import OWLDataProperty
-from owlapy.owl_reasoner import OntologyReasoner, FastInstanceCheckerReasoner
+from owlapy.owl_reasoner import StructuralReasoner
 
 
 def encode_image(image_path):
@@ -15,8 +15,7 @@ def encode_image(image_path):
 
 manager = OntologyManager()
 ontology = manager.load_ontology(IRI.create("file://fashionpedia-third-generation.owl"))
-base_reasoner = OntologyReasoner(ontology)
-reasoner = FastInstanceCheckerReasoner(base_reasoner=base_reasoner, ontology=ontology)
+reasoner = StructuralReasoner(ontology=ontology)
 dprop1 = OWLDataProperty(IRI.create("http://example.org/hasFileName"))
 dprop2 = OWLDataProperty(IRI.create("http://example.org/hasDescription"))
 dprop3 = OWLDataProperty(IRI.create("http://example.org/hasLLMDescription"))
