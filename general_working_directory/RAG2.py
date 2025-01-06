@@ -82,7 +82,7 @@ docs = np.array(df.values)
 qr = np.array(embbeding_client.embeddings.create(input=[query], model="tentris").data[0].embedding)
 
 cosine_similarities = find_cosine_similarities(qr, docs)
-K = 20
+K = 10
 top_scores_indexes = np.argpartition(cosine_similarities, -K)[-K:]
 bottom_scores_indexes = np.argpartition(cosine_similarities, K)[:K]
 
@@ -108,8 +108,8 @@ classified_instances_docs = docs[indexes_of_classified_instances]
 # retrieved_docs = docs[top_scores_indexes]
 
 textual_summary = get_LLM_textual_summary(iris[top_scores_indexes])
-
-print(textual_summary)
+#
+# print(textual_summary)
 
 textual_result_embedding = embbeding_client.embeddings.create(input=[textual_summary], model="tentris").data[0].embedding
 

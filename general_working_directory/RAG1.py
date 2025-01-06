@@ -70,9 +70,11 @@ best_similarity = cosine_similarities[best_match_index]
 
 indexes = np.argpartition(cosine_similarities, -10)[-10:]
 merged_documents = ""
+iris_result = set()
 for index in indexes:
 
     iri = iris[index]
+    iris_result.add(iri)
     image_ind = OWLNamedIndividual(iri)
 
     llm_description = str(list(reasoner.data_property_values(image_ind, dprop2))[0].get_literal())
@@ -86,5 +88,5 @@ for index in indexes:
     merged_documents += llm_description + " \n" + all_descriptions
 
 result = get_result(query, merged_documents)
-
+print(iris_result)
 print(result)
