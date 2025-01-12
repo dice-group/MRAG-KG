@@ -2,14 +2,13 @@
 
 This repository covers the coding part of the thesis. You will find here the scripts used during the work,
 details on how to reproduce the experimental results and how you can use the system. Some generative operations
-are computationally demanding, so below we have provided direct links to download these files. However, the 
-reproducing steps are still mentioned in this document.
+are computationally demanding, so below we have provided links to directly download the previously generated files. 
+However, the  reproducing steps are still mentioned in this document.
 
 
 ### Big files you can download from ftp server
 
-You can download files used in this thesis in the [ftp server](https://files.dice-research.org/datasets/MRAG-KG/) where
-you will find the following files (link to download is embedded):
+You can download the following files that were used during the work by clicking on them:
 - [First generated KG](https://files.dice-research.org/datasets/MRAG-KG/fashionpedia-first-generation.owl)
 - [Second generated KG](https://files.dice-research.org/datasets/MRAG-KG/fashionpedia-second-generation.owl)
 - [Second generated KG v2](https://files.dice-research.org/datasets/MRAG-KG/fashionpedia-second-generation-v2.owl)
