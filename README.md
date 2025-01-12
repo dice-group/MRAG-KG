@@ -197,7 +197,7 @@ license{
 }
 ```
 
-In the script named `first_generation.py` we use [rdflib](https://rdflib.readthedocs.io/en/stable/) to create a graph which
+In the script named `first_kg_generation.py` we use [rdflib](https://rdflib.readthedocs.io/en/stable/) to create a graph which
 we populate by adding axioms via the same libray.
 
 1. First we add a class for each of the following items:
@@ -205,18 +205,18 @@ we populate by adding axioms via the same libray.
 2. Then we add object properties for connections that are done using "id".
   For example an annotation has an `"image_id"` which is referring to the 
   image it belongs. Therefore, for the class annotation we will create an
-  object property `"hasImage"`. The same is done for each id connected
+  object property `"hasImage"`. The same is done for each id-connected
   entity.
 3. For the rest of the data that an entry has, we create a datatype property to
    represent them in the knowledge base. 
 4. The last step consist of adding the individuals by going through each entry 
    in the dataset and adding the respective classes and properties to it.
 
-By the end of the 4th step, the first knowledge base generation will be completed.
+By the end of the 4th step, the first knowledge base generation is completed.
 
 ### Second Generation
 
-For the second knowledge base generation, `second_generation.py` script is used.
+For the second knowledge base generation, `second_kg_generation.py` script is used.
 
 For the second generation we want the only individuals to be images. Therefore,
 we have only one class, which is `Image`. 
@@ -228,12 +228,12 @@ by an annotation. So basically, we have merged together all the information ther
 for an image.
 
 There are only data properties on this dataset, no object properties, 
-because we only describe data for images and there is no need to have a 
+because we only describe literal data for images and there is no need to have a 
 relation between these images.
 
 In this generation we have included only the apparel-descriptive information and omitted the 
-rest. All the information for an annotation that belongs to the image is concluded
-in a string and added as a data property to the image.
+rest, except the file_name and width & height. All the information for an annotation that belongs to the image is merged
+together in a string and attached to the image using a data property.
 
 A structure of the data is given below:
 
@@ -253,10 +253,6 @@ image{
 For the sake of understanding we are showing this in a json format, but this data exist only
 in RDF/XML format. Each annotation is represented  by a "has_description" property denoted as "desc1", "desc2", "..." 
 in the example above.
-
-We have not included `original_url` as a property because that usually refers
-to the website that hosts the image and not direct link to the image itself, 
-so basically its trivial information.
 
 
 ### Third Generation
