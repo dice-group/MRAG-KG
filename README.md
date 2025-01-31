@@ -5,6 +5,9 @@ details on how to reproduce the experimental results and how you can use the sys
 are computationally demanding, so below we have provided direct links to download these files. However, the 
 reproducing steps are still mentioned in this document.
 
+Writen work is included in the repository root files under the name: 
+_Multimodal Retrieval Augmented Generation over Knowledge Graph.pdf_
+
 
 ### Big files you can download from ftp server
 
