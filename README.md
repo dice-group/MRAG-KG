@@ -2,8 +2,8 @@
 
 This repository covers the coding part of the thesis. You will find here the scripts used during the work,
 details on how to reproduce the experimental results and how you can use the system. Some generative operations
-are computationally demanding, so below we have provided direct links to download these files. However, the 
-reproducing steps are still mentioned in this document.
+are computationally demanding, so below we have provided links to directly download the previously generated files. 
+However, the  reproducing steps are still mentioned in this document.
 
 Writen work is included in the repository root files under the name: 
 _Multimodal Retrieval Augmented Generation over Knowledge Graph.pdf_
@@ -11,8 +11,7 @@ _Multimodal Retrieval Augmented Generation over Knowledge Graph.pdf_
 
 ### Big files you can download from ftp server
 
-You can download files used in this thesis in the [ftp server](https://files.dice-research.org/datasets/MRAG-KG/) where
-you will find the following files (link to download is embedded):
+You can download the following files that were used during the work by clicking on them:
 - [First generated KG](https://files.dice-research.org/datasets/MRAG-KG/fashionpedia-first-generation.owl)
 - [Second generated KG](https://files.dice-research.org/datasets/MRAG-KG/fashionpedia-second-generation.owl)
 - [Second generated KG v2](https://files.dice-research.org/datasets/MRAG-KG/fashionpedia-second-generation-v2.owl)
@@ -200,7 +199,7 @@ license{
 }
 ```
 
-In the script named `first_generation.py` we use [rdflib](https://rdflib.readthedocs.io/en/stable/) to create a graph which
+In the script named `first_kg_generation.py` we use [rdflib](https://rdflib.readthedocs.io/en/stable/) to create a graph which
 we populate by adding axioms via the same libray.
 
 1. First we add a class for each of the following items:
@@ -208,18 +207,18 @@ we populate by adding axioms via the same libray.
 2. Then we add object properties for connections that are done using "id".
   For example an annotation has an `"image_id"` which is referring to the 
   image it belongs. Therefore, for the class annotation we will create an
-  object property `"hasImage"`. The same is done for each id connected
+  object property `"hasImage"`. The same is done for each id-connected
   entity.
 3. For the rest of the data that an entry has, we create a datatype property to
    represent them in the knowledge base. 
 4. The last step consist of adding the individuals by going through each entry 
    in the dataset and adding the respective classes and properties to it.
 
-By the end of the 4th step, the first knowledge base generation will be completed.
+By the end of the 4th step, the first knowledge base generation is completed.
 
 ### Second Generation
 
-For the second knowledge base generation, `second_generation.py` script is used.
+For the second knowledge base generation, `second_kg_generation.py` script is used.
 
 For the second generation we want the only individuals to be images. Therefore,
 we have only one class, which is `Image`. 
@@ -231,12 +230,12 @@ by an annotation. So basically, we have merged together all the information ther
 for an image.
 
 There are only data properties on this dataset, no object properties, 
-because we only describe data for images and there is no need to have a 
+because we only describe literal data for images and there is no need to have a 
 relation between these images.
 
 In this generation we have included only the apparel-descriptive information and omitted the 
-rest. All the information for an annotation that belongs to the image is concluded
-in a string and added as a data property to the image.
+rest, except the file_name and width & height. All the information for an annotation that belongs to the image is merged
+together in a string and attached to the image using a data property.
 
 A structure of the data is given below:
 
@@ -256,10 +255,6 @@ image{
 For the sake of understanding we are showing this in a json format, but this data exist only
 in RDF/XML format. Each annotation is represented  by a "has_description" property denoted as "desc1", "desc2", "..." 
 in the example above.
-
-We have not included `original_url` as a property because that usually refers
-to the website that hosts the image and not direct link to the image itself, 
-so basically its trivial information.
 
 
 ### Third Generation
